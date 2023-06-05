@@ -23,6 +23,20 @@ You can fetch the value from code or from redis-cli inside of the container
 "bar"
 ```
 
+# Data is persistent
+➜ docker stop my-redis
+my-redis
+➜ redis-cli
+Could not connect to Redis at 127.0.0.1:6379: Connection refused
+not connected> exit
+➜ docker start my-redis
+my-redis
+➜ redis-cli
+127.0.0.1:6379> get name
+"Monica"
+
+You can also Volume mount the data to host VM/Machine
+
 # Distributed Cache with Golang and Redis
 
 Redis Cluster is a distributed implementation of Redis that allows for horizontal scaling and high availability. It uses a sharding mechanism to partition the dataset across multiple nodes, ensuring that each node only holds a subset of the total data. Redis Cluster supports automatic node discovery, failover, and rebalancing, making it easy to scale the cluster up or down without any downtime.

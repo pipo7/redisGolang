@@ -96,16 +96,16 @@ Now you can run the main.go for REDIS CLUSTER
 ```go run main.go```
 
 # data persistent in Cluster, increase the TTL to test below scenario
-```docker exec -it myredis-0 sh // Go to master
-/data # redis-cli -p 7000
-127.0.0.1:7000> get foo
+```docker exec -it myredis-0 sh``` // Go to master
+```/data # redis-cli -p 7000```
+```127.0.0.1:7000> get foo```
 (error) MOVED 12182 10.101.1.4:7002 // it shows the key is in myredis-2
 127.0.0.1:7000> exit
-/data # exit
-user1@ps-vm1:~/redisDistCacheGo$ docker exec -it myredis-2 sh
-/data # redis-cli -p 7002
-127.0.0.1:7002> get foo
-"barValueInredisCluster"```
+/data # exit 
+```docker exec -it myredis-2 sh```
+```/data # redis-cli -p 7002```
+```127.0.0.1:7002> get foo```
+```"barValueInredisCluster"```
 
 Also note the default ```redis-cli``` tries to conect at localhost:6379 but we have changed the ports
 redis-cli --> response is Could not connect to Redis at 127.0.0.1:6379: Connection refused

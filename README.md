@@ -108,11 +108,11 @@ user1@ps-vm1:~/redisDistCacheGo$ docker exec -it myredis-2 sh
 "barValueInredisCluster"```
 
 Also note the default ```redis-cli``` tries to conect at localhost:6379 but we have changed the ports
-```redis-cli --> response is Could not connect to Redis at 127.0.0.1:6379: Connection refused
-not connected> exit```
-```# redis-cli -p 7002```
-```127.0.0.1:7002> get foo```
-```"barValueInredisCluster"```
+redis-cli --> response is Could not connect to Redis at 127.0.0.1:6379: Connection refused
+not connected> exit
+redis-cli -p 7002
+127.0.0.1:7002> get foo
+"barValueInredisCluster"
 
 # IMPORTANT , now will delete myredis-0 and myredis-1 both the masters to leave only 1 master
 docker exec -it myredis-1 sh

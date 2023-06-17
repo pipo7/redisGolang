@@ -115,17 +115,16 @@ redis-cli -p 7002
 "barValueInredisCluster"
 
 # IMPORTANT , now will delete myredis-0 and myredis-1 both the masters to leave only 1 master
-docker exec -it myredis-1 sh
-/data # redis-cli -p 7001
-127.0.0.1:7001> get foo
+```docker exec -it myredis-1 sh```
+```/data # redis-cli -p 7001```
+```127.0.0.1:7001> get foo```
 (error) MOVED 12182 10.101.1.5:7003
 127.0.0.1:7001> exit
 /data # exit
-user1@ps-vm1:~$ docker exec -it myredis-3 sh // NOTE: Now the value is on myredis-3 ...
-/data # redis-cli -p 7003
-127.0.0.1:7003> get foo
-"barValueInredisCluster"
-127.0.0.1:7003> 
+```docker exec -it myredis-3 sh // NOTE: Now the value is on myredis-3 ...```
+```/data # redis-cli -p 7003```
+```127.0.0.1:7003> get foo```
+```"barValueInredisCluster"```
 Also with 1 master and 3 workers the cluster is working fine.
 
 # Redis Sentinel 

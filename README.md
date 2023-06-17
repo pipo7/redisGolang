@@ -24,17 +24,20 @@ You can fetch the value from code or from redis-cli inside of the container
 ```
 
 # Data is persistent
-➜ docker stop my-redis
+```➜ docker stop my-redis
 my-redis
+
 ➜ redis-cli
 Could not connect to Redis at 127.0.0.1:6379: Connection refused
 not connected> exit
+
 ➜ docker start my-redis
 my-redis
+
 ➜ redis-cli
 127.0.0.1:6379> get name
 "Monica"
-
+```
 You can also Volume mount the data to host VM/Machine
 
 # Distributed Cache with Golang and Redis
@@ -93,7 +96,7 @@ Now you can run the main.go for REDIS CLUSTER
 ```go run main.go```
 
 # data persistent in Cluster, increase the TTL to test below scenario
-docker exec -it myredis-0 sh // Go to master
+```docker exec -it myredis-0 sh // Go to master
 /data # redis-cli -p 7000
 127.0.0.1:7000> get foo
 (error) MOVED 12182 10.101.1.4:7002 // it shows the key is in myredis-2
@@ -102,14 +105,14 @@ docker exec -it myredis-0 sh // Go to master
 user1@ps-vm1:~/redisDistCacheGo$ docker exec -it myredis-2 sh
 /data # redis-cli -p 7002
 127.0.0.1:7002> get foo
-"barValueInredisCluster"
+"barValueInredisCluster"```
 
-Also note teh default ```redis-cli``` tries to conect at localhost:6379 but we have changed the ports
-redis-cli --> response is Could not connect to Redis at 127.0.0.1:6379: Connection refused
-not connected> exit
+Also note the default ```redis-cli``` tries to conect at localhost:6379 but we have changed the ports
+```redis-cli --> response is Could not connect to Redis at 127.0.0.1:6379: Connection refused
+not connected> exit```
 ```# redis-cli -p 7002```
 ```127.0.0.1:7002> get foo```
-"barValueInredisCluster"
+```"barValueInredisCluster"```
 
 # IMPORTANT , now will delete myredis-0 and myredis-1 both the masters to leave only 1 master
 docker exec -it myredis-1 sh
